@@ -1,0 +1,407 @@
+@prefix : <http://jpost.org/ontologies/jpost.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://jpost.org/ontologies/jpost.owl> .
+
+<http://jpost.org/ontologies/jpost.owl> rdf:type owl:Ontology ;
+                                        
+                                        rdfs:label "jPOST ontology" ;
+                                        
+                                        rdfs:comment "not use other ontologies" .
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://jpost.org/ontologies/jpost.owl#contributor
+
+:contributor rdf:type owl:ObjectProperty ;
+             
+             rdfs:subPropertyOf owl:topObjectProperty .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#hostingRepository
+
+:hostingRepository rdf:type owl:ObjectProperty ;
+                   
+                   rdfs:domain :DatasetSummary ;
+                   
+                   rdfs:range :HostingRepository .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#principalInvestigator
+
+:principalInvestigator rdf:type owl:ObjectProperty ;
+                       
+                       rdfs:domain :ContributedPersons ;
+                       
+                       rdfs:range :LabHead ;
+                       
+                       rdfs:subPropertyOf :contributor .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#submitter
+
+:submitter rdf:type owl:ObjectProperty ;
+           
+           rdfs:domain :ContributedPersons ;
+           
+           rdfs:range :DatasetSubmitter ;
+           
+           rdfs:subPropertyOf :contributor .
+
+
+
+
+
+#################################################################
+#
+#    Data properties
+#
+#################################################################
+
+
+###  http://jpost.org/ontologies/jpost.owl#announceDate
+
+:announceDate rdf:type owl:DatatypeProperty ;
+              
+              rdfs:domain :ProteomeXchangeDataset ;
+              
+              rdfs:subPropertyOf :date ;
+              
+              rdfs:range xsd:dateTime .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#date
+
+:date rdf:type owl:DatatypeProperty .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#publishedDate
+
+:publishedDate rdf:type owl:DatatypeProperty ;
+               
+               rdfs:domain :ProjectEntry ;
+               
+               rdfs:subPropertyOf :date ;
+               
+               rdfs:range xsd:dateTime .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#qualityAssesment
+
+:qualityAssesment rdf:type owl:DatatypeProperty .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#repositorySupport
+
+:repositorySupport rdf:type owl:DatatypeProperty ;
+                   
+                   rdfs:domain :DatasetSummary ;
+                   
+                   rdfs:subPropertyOf :qualityAssesment ;
+                   
+                   rdfs:range xsd:boolean .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#reviewLevel
+
+:reviewLevel rdf:type owl:DatatypeProperty ;
+             
+             rdfs:domain :DatasetSummary ;
+             
+             rdfs:subPropertyOf :qualityAssesment ;
+             
+             rdfs:range xsd:boolean .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#submittedDate
+
+:submittedDate rdf:type owl:DatatypeProperty ;
+               
+               rdfs:domain :ProjectEntry ;
+               
+               rdfs:subPropertyOf :date ;
+               
+               rdfs:range xsd:dateTime .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://jpost.org/ontologies/jpost.owl#AffinityPurification
+
+:AffinityPurification rdf:type owl:Class ;
+                      
+                      rdfs:subClassOf :SampeType .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#Agent
+
+:Agent rdf:type owl:Class .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#Author
+
+:Author rdf:type owl:Class ;
+        
+        rdfs:subClassOf :ContributedPersons .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#BioSampleEntry
+
+:BioSampleEntry rdf:type owl:Class ;
+                
+                rdfs:subClassOf :JPOSTEntry .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#ContributedPersons
+
+:ContributedPersons rdf:type owl:Class ;
+                    
+                    rdfs:subClassOf :Agent .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#DataDependentAcquisition
+
+:DataDependentAcquisition rdf:type owl:Class ;
+                          
+                          rdfs:subClassOf :NonTargeted .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#DataIndependentAcquisition
+
+:DataIndependentAcquisition rdf:type owl:Class ;
+                            
+                            rdfs:subClassOf :NonTargeted .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#DatasetSubmitter
+
+:DatasetSubmitter rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf :ContributedPersons .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#DatasetSummary
+
+:DatasetSummary rdf:type owl:Class .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#Entry
+
+:Entry rdf:type owl:Class .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#ExperimentEntry
+
+:ExperimentEntry rdf:type owl:Class ;
+                 
+                 rdfs:subClassOf :JPOSTEntry .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#GelBased
+
+:GelBased rdf:type owl:Class ;
+          
+          rdfs:subClassOf :QuantificationPlatform .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#HostingRepository
+
+:HostingRepository rdf:type owl:Class ;
+                   
+                   rdfs:subClassOf :Repository .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#InstrumentMode
+
+:InstrumentMode rdf:type owl:Class .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#JPOSTEntry
+
+:JPOSTEntry rdf:type owl:Class ;
+            
+            rdfs:label "jPOST Entry" ;
+            
+            rdfs:subClassOf :Entry .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#LabHead
+
+:LabHead rdf:type owl:Class ;
+         
+         rdfs:subClassOf :ContributedPersons .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#MsBased
+
+:MsBased rdf:type owl:Class ;
+         
+         rdfs:subClassOf :QuantificationPlatform .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#NonTargeted
+
+:NonTargeted rdf:type owl:Class ;
+             
+             rdfs:subClassOf :MsBased .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#Others
+
+:Others rdf:type owl:Class ;
+        
+        rdfs:subClassOf :SampeType .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#PostStaining
+
+:PostStaining rdf:type owl:Class ;
+              
+              rdfs:subClassOf :GelBased .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#PostTranslationalModification
+
+:PostTranslationalModification rdf:type owl:Class ;
+                               
+                               rdfs:subClassOf :SampeType .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#PreFractionation
+
+:PreFractionation rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf :SampeType .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#PreStaining
+
+:PreStaining rdf:type owl:Class ;
+             
+             rdfs:subClassOf :GelBased .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#ProjectEntry
+
+:ProjectEntry rdf:type owl:Class ;
+              
+              rdfs:subClassOf :JPOSTEntry .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#ProteomeXchangeDataset
+
+:ProteomeXchangeDataset rdf:type owl:Class ;
+                        
+                        rdfs:subClassOf :Entry .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#Purpose
+
+:Purpose rdf:type owl:Class .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#QuantificationPlatform
+
+:QuantificationPlatform rdf:type owl:Class .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#Reference
+
+:Reference rdf:type owl:Class ;
+           
+           rdfs:subClassOf :SampeType .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#Repository
+
+:Repository rdf:type owl:Class .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#SampeType
+
+:SampeType rdf:type owl:Class .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#SubcellularFraction
+
+:SubcellularFraction rdf:type owl:Class ;
+                     
+                     rdfs:subClassOf :SampeType .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#Targeted
+
+:Targeted rdf:type owl:Class ;
+          
+          rdfs:subClassOf :MsBased .
+
+
+
+###  http://jpost.org/ontologies/jpost.owl#WholeCellDigest
+
+:WholeCellDigest rdf:type owl:Class ;
+                 
+                 rdfs:subClassOf :SampeType .
+
+
+
+
+###  Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net
+
